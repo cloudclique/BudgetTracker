@@ -231,7 +231,7 @@ const loginBtn = document.getElementById('loginBtn');
 const logoutBtn = document.getElementById('logoutBtn');
 const authArea = document.getElementById('authArea');
 
-async function login(){
+async function signIn(){
   try{
     await signInWithPopup(auth, provider);
   }catch(e){ console.error('Login failed', e); alert('Login failed: ' + e.message); }
