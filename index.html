@@ -606,6 +606,16 @@ function toggleRepeat(reason, date){
   renderEntries(); 
 }
 
+/* Helper to truncate reason for display in the table */
+function truncateReason(text) {
+  if (!text) return '-';
+  const str = String(text);
+  if (str.length > 15) {
+    return str.substring(0, 15) + '...';
+  }
+  return str;
+}
+
 /* --- Render main entries + repeats for selected month --- */
 function renderEntries(){
   // Build table body
@@ -657,7 +667,7 @@ function renderEntries(){
 
     tr.innerHTML = `
       <td class="${entry.type}">${entry.type}${entry.isRepeat ? ' (R)' : ''}</td>
-      <td>${entry.reason ? escapeHtml(entry.reason) : '-'}</td>
+      <td>${truncateReason(entry.reason ? escapeHtml(entry.reason) : '-')}</td>
       <td>${currency}${Number(entry.amount).toFixed(2)}</td>
       <td>${entry.category ? escapeHtml(entry.category) : '-'}</td>
       <td>${entry.date}</td>
