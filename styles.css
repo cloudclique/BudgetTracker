@@ -186,10 +186,19 @@ tr:hover {
     border-radius:8px; 
     margin-top:10px; 
 }
+
+/* Redefine table layout for better spacing in the management modal */
+.manage-table {
+    table-layout: auto; /* Allow content to dictate width, then constrain parent */
+    min-width: 740px; /* Ensure table is wide enough to show all columns */
+}
+
+/* Style the inputs within the management table */
 .manage-table td input[type="text"], 
 .manage-table td input[type="number"], 
 .manage-table td input[type="date"], 
-.manage-table td input[list]{
+.manage-table td input[list],
+.manage-table td select {
     width: 100%; 
     box-sizing: border-box; 
     background:#222; 
@@ -197,6 +206,30 @@ tr:hover {
     padding:6px; 
     border-radius:6px; 
     border:1px solid #333;
+    /* Reset margins for clean table look */
+    margin-bottom: 0; 
+}
+
+/* Adjust column widths in the Manage Repeating Entries table */
+.manage-table th, .manage-table td {
+    padding: 8px;
+    text-align: center;
+}
+.manage-table th:nth-child(1), .manage-table td:nth-child(1) { width: 15%; } /* Type */
+.manage-table th:nth-child(2), .manage-table td:nth-child(2) { width: 25%; } /* Reason */
+.manage-table th:nth-child(3), .manage-table td:nth-child(3) { width: 10%; } /* Amount */
+.manage-table th:nth-child(4), .manage-table td:nth-child(4) { width: 15%; } /* Category */
+.manage-table th:nth-child(5), .manage-table td:nth-child(5) { width: 15%; } /* Start */
+.manage-table th:nth-child(6), .manage-table td:nth-child(6) { width: 15%; } /* End */
+.manage-table th:nth-child(7), .manage-table td:nth-child(7) { width: 5%; }  /* Actions (Delete button) */
+
+/* Style the delete button */
+.manage-table td button {
+    padding: 4px 8px; 
+    font-size: 0.8em;
+    background: #ff4c4c;
+    color: #121212;
+    margin: 0;
 }
 @media (max-width: 640px){
     .modal-content { 
