@@ -96,7 +96,8 @@ h1 {
     padding-bottom: 0; 
 }
 .chart-card {
-    grid-column: 2 / 3; 
+    grid-column: 2 / 3;
+    max-height: 70vh;
 }
 .right-column-container {
     grid-column: 3 / 4; 
