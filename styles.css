@@ -129,6 +129,26 @@ h1 {
     grid-column: 2 / 3;
     max-height: 70vh;
 }
+.graph-card {
+    grid-column: 2 / 4;
+    max-height: 100vh;
+
+}
+
+.dates {
+    display:flex; 
+    gap:10px; 
+    margin-bottom: 15px; 
+    align-items: flex-end;
+    justify-content: flex-start; 
+    flex-grow: 0;
+    width:100%;
+}
+
+#dailyBalanceChart {
+    width: 100% !important;
+}
+
 .controls-card, .balance-card {
     display:flex;
     width: 100%;    
@@ -353,6 +373,8 @@ tr:hover {
     .main-grid {
         grid-template-columns: 1fr; 
         gap: 10px;
+        display: flex;
+        flex-direction: column;
     }
     .main-table-card {
         grid-column: 1 / 1;
@@ -402,9 +424,13 @@ tr:hover {
         padding: 8px; 
         font-size: 13px; 
     }
+    .main-grid {
+        display: flex;
+        flex-direction: column;
+    }
     .right-column-container {
         flex-direction: column; 
-        grid-column: 3 / 4; 
+        grid-column: 1 / 3; 
     }
     .controls-card, .balance-card {
         display:flex;
@@ -433,6 +459,17 @@ tr:hover {
     .controls-card button i{
         margin-left: 4px;
         color: var(--txt-clr);
+    }
+
+    .dates {
+    display:flex; 
+    gap:10px; 
+    margin-bottom: 15px; 
+    align-items: flex-end;
+    justify-content: flex-start; 
+    flex-wrap: wrap;
+    flex-grow: 0;
+    width:100%;
     }
 
 }

@@ -94,16 +94,15 @@
     </div>
   </div>
 
-  <div class="card chart-card">
-    <h2>Expenses by Category</h2>
+<div class="card chart-card">
+  <h2>Expenses by Category</h2>
     <canvas id="categoryChart"></canvas>
-  </div>
+</div>
 
   <div class="right-column-container">
-    
-    <div class="card chart-card">
+    <div class="card graph-card">
         <h2>Daily Cumulative Balance</h2>
-        <div style="display:flex; gap:10px; margin-bottom: 15px; align-items: flex-end; justify-content: center;">
+        <div class="dates">
             <div style="flex-grow:1;">
                 <label for="dailyChartStartDate" style="display:block; font-size: 0.8em; color: #aaa; margin-bottom: 3px;">Start Date</label>
                 <input type="date" id="dailyChartStartDate" style="width:100%; padding: 5px; background: #222; border: 1px solid #444; color: #eee; border-radius: 4px;">
@@ -114,7 +113,8 @@
             </div>
             <button onclick="handleDailyChartRangeChange()" style=" white-space: nowrap; margin-top: 0;">Apply</button>
         </div>
-        <canvas id="dailyBalanceChart" height="200" ></canvas>
+
+        <canvas id="dailyBalanceChart"></canvas>
         <p class="chart-note"style="font-size:9pt">Cumulative balance includes all entries and projected repeats up to the selected day.</p>
     </div>
   </div>

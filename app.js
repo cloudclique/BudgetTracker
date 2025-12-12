@@ -1009,8 +1009,8 @@ export function updateDailyBalanceChart(startDateStr, endDateStr){
 
   const chartOptions = {
       responsive: true,
-      maintainAspectRatio: true, 
-      aspectRatio: 1.5,
+      maintainAspectRatio: true,
+      aspectRatio: fullScreen ? 3 : 1.2,
       scales: {
           y: {
               beginAtZero: false,
@@ -1028,7 +1028,7 @@ export function updateDailyBalanceChart(startDateStr, endDateStr){
               display: true,
               text: chartTitle,
               color: '#eee',
-              font: { size: 16 }
+              font: { size: 14 }
           },
           tooltip: {
               callbacks: {
