@@ -384,11 +384,6 @@ tr:hover {
     .chart-card {
         grid-column: 1 / 1;
     }
-    .graph-card {
-        grid-column: 1 / 2;
-        max-height: none; /* MODIFIED: allows chart to render full height */
-        height: auto; /* ADDED: ensures fluid height in flex column */
-    }
     .right-column-container {
         grid-column: 1 / 1;
         flex-direction: row; 
@@ -475,12 +470,6 @@ tr:hover {
     flex-wrap: wrap;
     flex-grow: 0;
     width:100%;
-    }
-
-    .graph-card {
-        grid-column: 1 / 2;
-        max-height: none; /* MODIFIED: allows chart to render full height */
-        height: auto; /* ADDED: ensures fluid height in flex column */
     }
 
 }
