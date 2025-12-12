@@ -2,7 +2,8 @@
 /* --- 1. FIREBASE SETUP & IMPORTS -------------------------------------- */
 /* ---------------------------------------------------------------------- */
 
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+// ADDED GoogleAuthProvider and signInWithPopup to the imports and exports
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -21,7 +22,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app); // EXPORTED
 export const db = getFirestore(app); // EXPORTED
-export { initializeApp, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, sendEmailVerification }; // EXPORTED
+// ADDED GoogleAuthProvider and signInWithPopup to the exports
+export { initializeApp, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, getFirestore, doc, setDoc, getDoc, sendEmailVerification, GoogleAuthProvider, signInWithPopup }; // EXPORTED
 
 /* --- Global Utility Functions (NEW) --- */
 
@@ -110,6 +112,31 @@ async function handleAuthAction(action) {
         alert(message);
     }
 }
+
+/**
+ * Handles signing in with Google using a popup.
+ */
+export async function signInWithGoogle() { // EXPORTED
+    try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        // The onAuthStateChanged listener handles the rest (closing modal, loading data)
+        alert("Google Sign-In successful!");
+        closeAuthModal();
+    } catch (error) {
+        let message = "An error occurred during Google Sign-In.";
+        if (error.code === 'auth/popup-closed-by-user') {
+            message = "Sign-in popup was closed before completion.";
+        } else if (error.code === 'auth/cancelled-popup-request') {
+             message = "You attempted to sign in with Google too quickly. Please try again.";
+        } else {
+            console.error("Google Auth error:", error);
+            message = `Error: ${error.message}`;
+        }
+        alert(message);
+    }
+}
+
 
 /**
  * Sends an email verification to the currently logged-in user.
@@ -267,10 +294,9 @@ onAuthStateChanged(auth, async (user) => {
       entries = [];
       repeatingEntries = [];
       
-      // --- START ADDED CODE: Clear Local Storage on Sign Out ---
+      // Clear Local Storage on Sign Out
       localStorage.removeItem('budgetEntries');
       localStorage.removeItem('budgetRepeats');
-      // --- END ADDED CODE ---
 
       // If local storage has a currency setting, maintain that (This section now reads the cleared storage)
       const localSaved = localStorage.getItem('budgetEntries');
@@ -1288,9 +1314,12 @@ window.closeActionModal = closeActionModal;
 window.deleteRepeat = deleteRepeat; 
 window.updateRepeatField = updateRepeatField;
 
-// NEW EXPOSURES for Daily Chart Range:
+// EXPOSURES for Daily Chart Range:
 window.handleDailyChartRangeChange = handleDailyChartRangeChange; 
 window.setDailyChartDefaultRange = setDailyChartDefaultRange;
 
 // EXPOSURE for Email Verification:
-window.sendVerificationEmail = sendVerificationEmail;
+window.sendVerificationEmail = sendVerificationEmail; 
+
+// NEW EXPOSURE for Google Sign-In:
+window.signInWithGoogle = signInWithGoogle;
